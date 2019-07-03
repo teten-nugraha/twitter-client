@@ -7,6 +7,8 @@ import Signin from './component/pages/auth/Signin.jsx'
 import SignUp from './component/pages/auth/SignUp.jsx'
 import ForgotPassword from './component/pages/auth/ForgotPassword'
 
+import Home from './component/pages/home/Home'
+
 function App() {
   return (
     <div>
@@ -15,7 +17,7 @@ function App() {
 
       <div className="container-fluid gedf-wrapper" style={{ paddingTop:"80px" }}>
 
-        <ForgotPassword />
+        <Home />
 
       </div>
 
