@@ -3,7 +3,7 @@ import {
     GET_ERRORS
 }from './types'
 import jwt_decode from 'jwt-decode'
-import axios from axios
+import axios from "axios"
 import {
     API_URL
 }from '../util/Url'
@@ -16,17 +16,19 @@ export const loginUser = userData => dispatch => {
         }
     })
     .then(response => {
-
-        const { token } = response.data.data
+        
+        const { token } = response.data.data;
 
         //set token to ls
-        localStorage.setItem('jwtToken', token)
+        localStorage.setItem('jwtToken', token);
 
-        const decoded = jwt_decode(token)
+        const decoded = jwt_decode(token);
 
-        dispatch(setCurrentUser(decoded)
+        dispatch(setCurrentUser(decoded));
+        
+    })
+    .catch(function(error) {
 
-    }).catch(function(error) {
         dispatch({
             type: GET_ERRORS,
             payload: error.response
@@ -40,4 +42,13 @@ export const setCurrentUser = (decoded) => {
         type: SET_CURRENT_USER,
         payload: decoded
     }
+}
+
+export const logoutUser = () => dispatch => {
+    localStorage.removeItem('jwtToken')
+    localStorage.removeItem('role')
+
+    dispatch(setCurrentUser({}))
+
+    this.props.history.push('/login');
 }
