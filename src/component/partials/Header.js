@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { logoutUser } from '../../actions/authActions'
 
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+       
+        this.onLogoutClick = this.onLogoutClick.bind(this);    
+    }
+
+    onLogoutClick(e) {
+        e.preventDefault();
+        this.props.logoutUser();
+    }
+
     render() {
         return (
             <div>
@@ -23,7 +37,7 @@ class Header extends Component {
                     </ul>
                     <ul className="navbar-nav px-3">
                         <li className="nav-item text-nowrap">
-                        <a className="nav-link" href="#">Sign out</a>
+                        <button onClick={this.onLogoutClick.bind(this)} className="nav-link">Sign Out</button>
                         </li>
                     </ul>
                     </div>
@@ -33,4 +47,13 @@ class Header extends Component {
     }
 }
 
-export default Header;
+Header.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  }
+  
+  const mapStateToProps = state => ({
+    auth: state.auth
+  })
+  
+  export default connect(mapStateToProps,{logoutUser})(Header);
