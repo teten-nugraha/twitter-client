@@ -17,22 +17,21 @@ export const loginUser = userData => dispatch => {
     })
     .then(response => {
         
-        const { token } = response.data.data;
+        const realToken = response.data.data.split("Bearer ");
+        
+        localStorage.setItem('jwtToken', realToken[1]);
 
-        //set token to ls
-        localStorage.setItem('jwtToken', token);
-
-        const decoded = jwt_decode(token);
+        const decoded = jwt_decode(realToken[1]);
 
         dispatch(setCurrentUser(decoded));
         
     })
     .catch(function(error) {
-
-        dispatch({
-            type: GET_ERRORS,
-            payload: error.response
-        })
+        console.log(error)
+        // dispatch({
+        //     type: GET_ERRORS,
+        //     payload: error.response
+        // })
     })
 
 }
@@ -50,5 +49,5 @@ export const logoutUser = () => dispatch => {
 
     dispatch(setCurrentUser({}))
 
-    this.props.history.push('/login');
+    window.location.href = '/login'
 }

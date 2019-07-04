@@ -37,7 +37,7 @@ class Header extends Component {
                     </ul>
                     <ul className="navbar-nav px-3">
                         <li className="nav-item text-nowrap">
-                        <button onClick={this.onLogoutClick.bind(this)} className="nav-link">Sign Out</button>
+                        <button onClick={this.onLogoutClick.bind(this)} className="btn btn-outline-success my-2 my-sm-0">Sign Out</button>
                         </li>
                     </ul>
                     </div>

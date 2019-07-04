@@ -24,9 +24,21 @@ class Signin extends Component {
 
     componentDidMount() {
 
-        // const { isAuthenticated, user }  = this.props.auth;
+        const { isAuthenticated, user }  = this.props.auth;
 
-        // this.props.history.push('/');
+        this.props.history.push('/');
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if(nextProps.auth.isAuthenticated) {
+            this.props.history.push('/');
+        }
+
+        if(nextProps.errors) {
+           
+        }
 
     }
 
