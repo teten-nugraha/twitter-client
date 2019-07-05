@@ -35,6 +35,27 @@ export const loginUser = userData => dispatch => {
 
 }
 
+export const signupUser = userData => dispatch => {
+
+    axios.post(API_URL + "/users/register", userData, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        
+        window.location.href = '/login'
+        
+    })
+    .catch(function(error) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        })
+    })
+
+}
+
 export const setCurrentUser = (decoded) => {
     return {
         type: SET_CURRENT_USER,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './signin.css';
-
+import {
+    Link
+} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loginUser } from '../../../actions/authActions'
@@ -128,7 +130,7 @@ class Signin extends Component {
                         className="btn btn-primary btn-block mb-2"
                         disabled={!this.validateForm()}
                         >Submit</button>
-                    <button className="btn btn-lg btn-default btn-block" type="submit">Sign up</button>
+                    <Link to="/signup" className="btn btn-lg btn-default btn-block">Sign Up</Link>
                     <a href="#">Forgot Password</a>
                     <p className="mt-5 mb-3 text-muted">&copy; hackflix 2019</p>
                     </form>
