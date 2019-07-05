@@ -14,7 +14,8 @@ class Signin extends Component {
             username: "teten@mail.com",
             password:"123456",
             isLoading: false,
-            errors:false
+            errors:false,
+            errorMessage:''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +41,12 @@ class Signin extends Component {
 
         if(nextProps.errors) {
            
+            console.log(nextProps.errors)
+            this.setState({
+                errors: nextProps.errors.error,
+                errorMessage: nextProps.errors.message.error
+            })
+
         }
 
     }
@@ -71,10 +78,23 @@ class Signin extends Component {
     }
 
     render() {
+        
+        let showNotifError = null;
+        if(this.state.errors) {
+            showNotifError = (
+                <div class="alert alert-danger" role="alert">
+                    {this.state.errorMessage}
+                </div>
+            );
+        }
+
         return (
             <div className="row">
           
                 <div className="col-md-4 mx-auto text-center">
+
+                    {showNotifError}
+
                     <form onSubmit={this.handleSubmit}>
                     <img class="mb-4" src="https://bgasparotto.com/wp-content/uploads/2017/12/spring-boot-logo.png" alt="" width="200" height="130" />
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
