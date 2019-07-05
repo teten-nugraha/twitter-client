@@ -11,8 +11,8 @@ class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password:"",
+            username: "teten@mail.com",
+            password:"123456",
             isLoading: false,
             errors:false
         }
@@ -26,7 +26,9 @@ class Signin extends Component {
 
         const { isAuthenticated, user }  = this.props.auth;
 
-        this.props.history.push('/');
+        if(isAuthenticated) {
+            this.props.history.push('/');
+        }
 
     }
 

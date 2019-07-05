@@ -17,11 +17,11 @@ export const loginUser = userData => dispatch => {
     })
     .then(response => {
         
-        const realToken = response.data.data.split("Bearer ");
+        const realToken = response.data.data;
         
-        localStorage.setItem('jwtToken', realToken[1]);
+        localStorage.setItem('jwtToken', realToken);
 
-        const decoded = jwt_decode(realToken[1]);
+        const decoded = jwt_decode(realToken);
 
         dispatch(setCurrentUser(decoded));
         

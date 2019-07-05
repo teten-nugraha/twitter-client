@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import {
+    Link,
+    NavLink
+  } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
@@ -18,6 +22,30 @@ class Header extends Component {
     }
 
     render() {
+
+        const { isAuthenticated, user }  = this.props.auth;
+
+        const profileLink = (
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        );
+
+        const signOut = (
+            <button onClick={this.onLogoutClick.bind(this)} className="btn btn-outline-success my-2 my-sm-0">Sign Out</button>
+        );
+
+        const signIn = (
+            <Link to="/login" className="btn btn-outline-success my-2 my-sm-0 ">
+                Sign In
+            </Link>
+        );
+
         return (
             <div>
                 <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -27,19 +55,14 @@ class Header extends Component {
                     </button>
             
                     <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                        <a className="nav-link" href="#">Profile</a>
-                        </li>
-                    </ul>
-                    <ul className="navbar-nav px-3">
-                        <li className="nav-item text-nowrap">
-                        <button onClick={this.onLogoutClick.bind(this)} className="btn btn-outline-success my-2 my-sm-0">Sign Out</button>
-                        </li>
-                    </ul>
+                        
+                        {isAuthenticated ? profileLink: null }
+
+                        <ul className="navbar-nav px-3">
+                            <li className="nav-item text-nowrap">
+                                {isAuthenticated ? signOut: signIn }
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </div>
