@@ -48,9 +48,9 @@ export const signupUser = userData => dispatch => {
     })
     .then(response => {
         
-        console.log(response)
+        // console.log(response)
 
-        // window.location.href = '/login'
+        window.location.href = '/login'
         
     })
     .catch(function(error) {
