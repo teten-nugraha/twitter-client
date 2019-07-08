@@ -34,11 +34,18 @@ class Home extends Component {
         // })
 
         axios.post(API_URL + "/tweets", data, {
-            headers: {'Authorization': 'Bearer '+localStorage.getItem('jwtToken')}
+            headers: {
+                'Authorization': 'Bearer '+localStorage.getItem('jwtToken'),
+                'Content-type': 'application/json'
+            }
         })
         .then(response => {
             
-            alert('sukses')
+            this.setState({
+                newTweet: " "
+            })
+
+            React.findDOMNode(this.refs.newTweet).value = "";
             
         })
         .catch(function(error) {
@@ -46,9 +53,7 @@ class Home extends Component {
             console.log(error)
         })
 
-        this.setState({
-            newTweet: ""
-        })
+        
 
     }
 
@@ -88,7 +93,7 @@ class Home extends Component {
                             <ul className="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                 <li className="nav-item">
                                     <a className="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
-                                        aria-controls="posts" aria-selected="true">Make
+                                        aria-controls="posts" aria-selected="true">  Make
                                         a publication</a>
                                 </li>
                             </ul>
@@ -118,7 +123,7 @@ class Home extends Component {
                                     <button 
                                         type="submit" 
                                         className="btn btn-primary btn-block mb-2"
-                                    >Share New Tweet</button>
+                                    ><i className="fa fa-twitter"></i> Share New Tweet</button>
                                 </div>
                             </div>
                             </form>
