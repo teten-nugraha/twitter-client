@@ -34,6 +34,7 @@ class Signin extends Component {
         }
 
     }
+    
 
     componentWillReceiveProps(nextProps) {
 
@@ -41,15 +42,14 @@ class Signin extends Component {
             this.props.history.push('/');
         }
 
-        if(nextProps.errors) {
+        // if(nextProps.errors) {
            
-            console.log(nextProps.errors)
-            this.setState({
-                errors: nextProps.errors.error,
-                errorMessage: nextProps.errors.message.error
-            })
+        //     this.setState({
+        //         errors: nextProps.errors.error,
+        //         errorMessage: nextProps.errors.message.error
+        //     })
 
-        }
+        // }
 
     }
 

@@ -62,17 +62,19 @@ class SignUp extends Component {
     handleSubmit =  event => {
         event.preventDefault();
         
+
         const data = {
             username : this.state.username,
             fullname : this.state.fullname,
             password : this.state.password,
             confirmPassword : this.state.confirmPassword
         }
-        this.setState({
-            isLoading: true,
-            errors:false
-        })
-        // console.log(data)
+
+        // this.setState({
+        //     isLoading: true,
+        //     errors:false
+        // })
+        // // console.log(data)
         this.props.signupUser(data)
 
     }

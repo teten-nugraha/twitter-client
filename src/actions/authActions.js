@@ -17,6 +17,7 @@ export const loginUser = userData => dispatch => {
     })
     .then(response => {
         
+
         const realToken = response.data.data;
         
         localStorage.setItem('jwtToken', realToken);
@@ -27,10 +28,13 @@ export const loginUser = userData => dispatch => {
         
     })
     .catch(function(error) {
-        dispatch({
-            type: GET_ERRORS,
-            payload: error.response.data
-        })
+
+        // console.log(error)
+
+        // dispatch({
+        //     type: GET_ERRORS,
+        //     payload: error.response
+        // })
     })
 
 }
@@ -44,7 +48,9 @@ export const signupUser = userData => dispatch => {
     })
     .then(response => {
         
-        window.location.href = '/login'
+        console.log(response)
+
+        // window.location.href = '/login'
         
     })
     .catch(function(error) {
@@ -65,7 +71,6 @@ export const setCurrentUser = (decoded) => {
 
 export const logoutUser = () => dispatch => {
     localStorage.removeItem('jwtToken')
-    localStorage.removeItem('role')
 
     dispatch(setCurrentUser({}))
 
