@@ -29,7 +29,7 @@ class Header extends Component {
         const profileLink = (
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                    <Link to="/home" className="nav-link">Home</Link>
+                    <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/profile" className="nav-link">Profile</Link>

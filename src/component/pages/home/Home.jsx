@@ -1,6 +1,58 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import {
+    API_URL
+}from '../../../util/Url'
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            newTweet: ""
+        }
+        this.handleNewTweet = this.handleNewTweet.bind(this);
+        
+        
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleNewTweet =  event => {
+        event.preventDefault();
+        
+        const data = {
+            tweet : this.state.newTweet
+        }
+        // this.setState({
+        //     isLoading: true,
+        //     errors:false
+        // })
+
+        axios.post(API_URL + "/tweets", data, {
+            headers: {'Authorization': 'Bearer '+localStorage.getItem('jwtToken')}
+        })
+        .then(response => {
+            
+            alert('sukses')
+            
+        })
+        .catch(function(error) {
+    
+            console.log(error)
+        })
+
+        this.setState({
+            newTweet: ""
+        })
+
+    }
+
+
     render() {
         return (
             <div className="row">
@@ -39,49 +91,37 @@ class Home extends Component {
                                         aria-controls="posts" aria-selected="true">Make
                                         a publication</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
-                                        aria-selected="false" href="#images">Images</a>
-                                </li>
                             </ul>
                         </div>
                         <div className="card-body">
+                            <form onSubmit={this.handleNewTweet}>
                             <div className="tab-content" id="myTabContent">
                                 <div className="tab-pane fade show active" id="posts" role="tabpanel"
                                     aria-labelledby="posts-tab">
                                     <div className="form-group">
                                         <label className="sr-only" for="message">post</label>
-                                        <textarea className="form-control" id="message" rows="3"
-                                            placeholder="What are you thinking?"></textarea>
+                                        <textarea 
+                                            className="form-control" 
+                                            id="newTweet" 
+                                            rows="3"
+                                            placeholder="What are you thinking?"
+                                            value={this.state.username}
+                                            onChange={this.handleChange}
+                                            name="newTweet"
+                                            ></textarea>
                                     </div>
 
-                                </div>
-                                <div className="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                    <div className="form-group">
-                                        <div className="custom-file">
-                                            <input type="file" className="custom-file-input" id="customFile" />
-                                            <label className="custom-file-label" for="customFile">Upload image</label>
-                                        </div>
-                                    </div>
-                                    <div className="py-4"></div>
                                 </div>
                             </div>
                             <div className="btn-toolbar justify-content-between">
                                 <div className="btn-group">
-                                    <button type="submit" className="btn btn-primary">share</button>
-                                </div>
-                                <div className="btn-group">
-                                    <button id="btnGroupDrop1" type="button" className="btn btn-link dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i className="fa fa-globe"></i>
-                                    </button>
-                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                        <a className="dropdown-item" href="#"><i className="fa fa-globe"></i> Public</a>
-                                        <a className="dropdown-item" href="#"><i className="fa fa-users"></i> Friends</a>
-                                        <a className="dropdown-item" href="#"><i className="fa fa-user"></i> Just me</a>
-                                    </div>
+                                    <button 
+                                        type="submit" 
+                                        className="btn btn-primary btn-block mb-2"
+                                    >Share New Tweet</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
 
@@ -91,7 +131,7 @@ class Home extends Component {
                                 <div className="d-flex justify-content-between align-items-center">
                                     <div className="mr-2">
                                         <img className="rounded-circle" width="45"
-                                            src="https://loremflickr.com/cache/resized/7893_32470606037_43b708e6ae_s_50_50_nofilter.jpg"
+                                            src="#"
                                             alt="" />
                                     </div>
                                     <div className="ml-2">
@@ -141,7 +181,7 @@ class Home extends Component {
                                 <div className="d-flex justify-content-between align-items-center">
                                     <div className="mr-2">
                                         <img className="rounded-circle" width="45"
-                                            src="https://loremflickr.com/cache/resized/7893_32470606037_43b708e6ae_s_50_50_nofilter.jpg"
+                                            src=""
                                             alt="" />
                                     </div>
                                     <div className="ml-2">

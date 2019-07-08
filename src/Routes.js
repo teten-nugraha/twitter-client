@@ -7,6 +7,7 @@ import SignUp from './component/pages/auth/SignUp.jsx'
 import ForgotPassword from './component/pages/auth/ForgotPassword'
 
 import Home from './component/pages/home/Home'
+import Profile from './component/pages/home/Profile'
 
 class Routes extends Component {
     render() {
@@ -15,6 +16,7 @@ class Routes extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Signin} />
                 <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/profile" component={Profile} />
             </div>
         )
     }
