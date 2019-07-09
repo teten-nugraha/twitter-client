@@ -13,9 +13,12 @@ class Home extends Component {
         this.state = {
             newTweet: "",
             tweets:[],
-            loadTweet:false
+            loadTweet:false,
+            pageSize:5,
+            pageNo:1,
         }
         this.handleNewTweet = this.handleNewTweet.bind(this);
+        this.loadMore = this.loadMore.bind(this);
         
         
     }
@@ -72,7 +75,7 @@ class Home extends Component {
             loadTweet: true
         })
 
-        axios.get(API_URL + "/tweets/home", {
+        axios.get(API_URL + "/tweets/home?pageSize="+this.state.pageSize+"&pageNo="+this.state.pageNo+"&sortBy=id", {
             headers: {
                 'Authorization': 'Bearer '+localStorage.getItem('jwtToken'),
                 'Content-type': 'application/json'
@@ -191,6 +194,10 @@ class Home extends Component {
 
                     { this.populateTweets() }
 
+                    <button onClick={this.loadMore} class="btn btn-block btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more ...</button>
+
+                    <br />
+                    <br />
                 </div>
 
             </div>
