@@ -2,12 +2,12 @@ import React from 'react';
 import Avatar from 'react-avatar';
 
 import TimeAgo from 'react-timeago'
-import idStrings from 'react-timeago/lib/language-strings/id'
+import enStrings from 'react-timeago/lib/language-strings/en'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 
 function Tweet(props) {
 
-    const formatter = buildFormatter(idStrings)
+    const formatter = buildFormatter(enStrings)
 
     return (
 
